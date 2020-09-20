@@ -34,37 +34,9 @@ namespace AIServer.DataHandlers
                     // добавляем его в Bitmap нового изображения
                     resultImage.SetPixel(x, y, Color.FromArgb((int)newPixel));
 
-                    //int item = (y + 1) * (x + 1) - 1;
                     var r = resultImage.GetPixel(x, y).R;
                     InputData.Add(r);
                 }
-
-            resultImage.Save("C:/Users/User/Desktop/bwimg.jpg");
-            var img = new Bitmap(image, 28, 28);
-            //for (int y = 0; y < img.Height; y++)
-            //    for (int x = 0; x < img.Width; x++)
-            //    {
-            //        int item = (y + 1) * (x + 1) - 1;
-            //        var pixel = Color.FromArgb((int)InputData[item], (int)InputData[item], (int)InputData[item]);
-            //        img.SetPixel(x, y, pixel);
-            //    }
-
-            int xx = 0;
-            int yy = 0;
-            foreach (var n in InputData)
-            {
-                var pixel = Color.FromArgb((int)n, (int)n, (int)n);
-                img.SetPixel(xx, yy, pixel);
-                if (xx < img.Height - 1)
-                    xx++;
-                else
-                {
-                    yy++;
-                    xx = 0;
-                }
-            }
-
-            img.Save("C:/Users/User/Desktop/bwi.jpg");
         }
     }
 }

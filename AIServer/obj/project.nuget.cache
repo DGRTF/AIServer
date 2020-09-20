@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rvr3S3V+R7OoKedMm4PXb0Z6puRdyE6xEL5V0bFd3YNPmYHzk9zAKFTJRkc4vKKm+vWpnZVZgws+kS6Q1AEcXw==",
+  "dgSpecHash": "FZpfTWICxaoC8y8Y+xJr9YQ8I/tJYBGlZtmaWmvzwS6JV430vlmCf3isA9bkpe7HDvEs0wLwhdmtNUqQ05bxbw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\AIServer\\AIServer\\AIServer.csproj",
+  "projectFilePath": "C:\\Users\\User\\Documents\\Web\\Backend\\AIServer\\AIServer\\AIServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\accord.math\\3.8.0\\accord.math.3.8.0.nupkg.sha512",

@@ -38,20 +38,14 @@ namespace AIServer.AI
                     float number = 0;
                     foreach (var nn in outs)
                     {
-                        //System.Console.WriteLine(nn);
                         if (nn > number)
                             number = nn;
                     }
 
-                    //System.Console.WriteLine();
                     outItemNumber = outs.IndexOf(number);
                     if (outItemNumber >= 0)
                         return outItemNumber;
-                        //System.Console.WriteLine(outItemNumber);
                 }
-
-                //System.Console.WriteLine();
-                //System.Console.WriteLine();
 
             }
             return outItemNumber;

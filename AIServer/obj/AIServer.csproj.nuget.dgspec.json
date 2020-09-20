@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\AIServer\\AIServer\\AIServer.csproj": {}
+    "C:\\Users\\User\\Documents\\Web\\Backend\\AIServer\\AIServer\\AIServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\AIServer\\AIServer\\AIServer.csproj": {
+    "C:\\Users\\User\\Documents\\Web\\Backend\\AIServer\\AIServer\\AIServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\AIServer\\AIServer\\AIServer.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\Web\\Backend\\AIServer\\AIServer\\AIServer.csproj",
         "projectName": "AIServer",
-        "projectPath": "C:\\Users\\User\\source\\repos\\AIServer\\AIServer\\AIServer.csproj",
+        "projectPath": "C:\\Users\\User\\Documents\\Web\\Backend\\AIServer\\AIServer\\AIServer.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\AIServer\\AIServer\\obj\\",
+        "outputPath": "C:\\Users\\User\\Documents\\Web\\Backend\\AIServer\\AIServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

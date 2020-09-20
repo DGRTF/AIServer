@@ -22,12 +22,10 @@ namespace AIServer.Controllers
         //[HttpPost]
         public int DefineNumber(IFormFile File)
         {
-            //System.Console.WriteLine(File.ContentType);
             var streamImage = File.OpenReadStream();
             var imageHandler = new ImageHandler(streamImage);
 
             var model = new AiSingleNumber();
-            int i = (int)imageHandler.InputData[0];
 
             float[] inArr= new float[784];
             int count = 0;
