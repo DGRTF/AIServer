@@ -58,9 +58,6 @@ C:\Users\User\Documents\Web\Backend\AIServer\AIServer\bin\Debug\netcoreapp3.1\ru
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\onnxruntime.dll
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\onnxruntime.lib
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\onnxruntime.pdb
-C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.csprojAssemblyReference.cache
-C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.csproj.CoreCompileInputs.cache
-C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.AssemblyInfoInputs.cache
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.AssemblyInfo.cs
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.RazorTargetAssemblyInfo.cache
@@ -70,3 +67,6 @@ C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\st
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.dll
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.pdb
 C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.genruntimeconfig.cache
+C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Documents\Web\Backend\AIServer\AIServer\obj\Debug\netcoreapp3.1\AIServer.csprojAssemblyReference.cache

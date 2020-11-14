@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIServer", "AIServer\AIServer.csproj", "{81CE5AC7-0E06-4AC8-916F-51508FC2735F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIServer", "AIServer\AIServer.csproj", "{81CE5AC7-0E06-4AC8-916F-51508FC2735F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIServerUnitTests", "AIServerUnitTests\AIServerUnitTests.csproj", "{D6A54B8F-D045-4598-8163-1C809AEABB6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{81CE5AC7-0E06-4AC8-916F-51508FC2735F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81CE5AC7-0E06-4AC8-916F-51508FC2735F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81CE5AC7-0E06-4AC8-916F-51508FC2735F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A54B8F-D045-4598-8163-1C809AEABB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A54B8F-D045-4598-8163-1C809AEABB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A54B8F-D045-4598-8163-1C809AEABB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A54B8F-D045-4598-8163-1C809AEABB6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

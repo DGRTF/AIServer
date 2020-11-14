@@ -5,16 +5,15 @@ namespace AIServer.DataHandlers
 {
     public class ImageHandler
     {
-        public ImageHandler(Stream stream)
+        public ImageHandler(Bitmap image)
         {
-            Init(stream);
+            Init(image);
         }
 
         public float[] InputData { get; private set; } = new float[784];
 
-        void Init(Stream stream)
+        void Init(Bitmap image)
         {
-            var image = new Bitmap(stream);
             var resultImage = new Bitmap(image, 28, 28);
 
             int count = 0;
