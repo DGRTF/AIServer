@@ -8,12 +8,6 @@ namespace AIServer.Controllers
 {
     public class AiNumberController : Controller
     {
-
-        public AiNumberController()
-        {
-
-        }
-
         [HttpPost]
         public int DefineNumber(IFormFile File)
         {
