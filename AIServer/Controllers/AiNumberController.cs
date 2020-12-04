@@ -8,15 +8,16 @@ namespace AIServer.Controllers
 {
     public class AiNumberController : Controller
     {
-        [HttpPost]
-        public int DefineNumber(IFormFile File)
+        [HttpPost("AiNumber/DefineNumber")]
+        public IActionResult DefineNumber(IFormFile File)
         {
             var streamImage = File.OpenReadStream();
             var imageHandler = new ImageHandler(new Bitmap(streamImage));
 
             var model = new AiSingleNumber();
+            int result = model.DefineNumber(imageHandler.InputData);
 
-            return model.DefineNumber(imageHandler.InputData);
+            return Json(result);
         }
 
     }
