@@ -47,9 +47,9 @@ namespace AIServer.Authtorize
         }
 
         [HttpPost("/token")]
-        public IActionResult Token(string username, string password)
+        public IActionResult Token(string name, string password)
         {
-            var identity = GetIdentity(username, password);
+            var identity = GetIdentity(name, password);
             if (identity == null)
             {
                 return BadRequest(new { errorText = "Invalid username or password." });
@@ -75,9 +75,9 @@ namespace AIServer.Authtorize
             return Json(response);
         }
 
-        private ClaimsIdentity GetIdentity(string username, string password)
+        private ClaimsIdentity GetIdentity(string name, string password)
         {
-            User person = this.DB.Users.ToList().FirstOrDefault(x => x.Name == username && x.Password == password);
+            User person = this.DB.Users.ToList().FirstOrDefault(x => x.Name == name && x.Password == password);
 
             if (person != null)
             {
