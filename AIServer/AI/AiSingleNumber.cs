@@ -25,7 +25,11 @@ namespace AIServer.AI
 
             foreach (var name in inputMeta.Keys)
             {
-                var tensor = new DenseTensor<float>(inputData, new int[] { 1, 28, 28 });
+                var data = Session.InputMetadata[name].Dimensions;
+                for (int i = 0; i < data.Length; i++)
+                    data[i] = Math.Abs(data[i]);
+
+                var tensor = new DenseTensor<float>(inputData, data);
                 inputs.Add(NamedOnnxValue.CreateFromTensor<float>(name, tensor));
                 count++;
             }

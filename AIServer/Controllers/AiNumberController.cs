@@ -1,5 +1,6 @@
 ﻿using AIServer.AI;
 using AIServer.DataHandlers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
@@ -9,6 +10,7 @@ namespace AIServer.Controllers
     public class AiNumberController : Controller
     {
         [HttpPost("AiNumber/DefineNumber")]
+        [Authorize]
         public IActionResult DefineNumber(IFormFile File)
         {
             var streamImage = File.OpenReadStream();
