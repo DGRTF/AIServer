@@ -1,13 +1,14 @@
-using AIServer.DBModels;
-//using AIServer.WebSocketControllers;
+using AIServer.Models.DBModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System.IO;
 using System.Text;
 
 namespace AIServer
@@ -29,7 +30,7 @@ namespace AIServer
             // получаем строку подключения из файла конфигурации
             string connection = Configuration.GetConnectionString("DefaultConnection");
             // добавляем контекст MobileContext в качестве сервиса в приложение
-            services.AddDbContext<ApplicationContext>(options =>
+            services.AddDbContext<ApplicationDBContext>(options =>
                 options.UseSqlServer(connection));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -73,9 +74,24 @@ namespace AIServer
             }
 
             app.UseHttpsRedirection();
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path == "/personal")
+                {
+                    var filePath = "./number-ml-paint/public/index.html";
+                    var stremReader = new StreamReader(filePath);
+                    var result = await stremReader.ReadToEndAsync();
+                    await context.Response.WriteAsync(result);
+                }
+                else
+                    await next();
+            });
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseWebSockets();
 

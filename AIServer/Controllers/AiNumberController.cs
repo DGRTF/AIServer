@@ -7,10 +7,10 @@ using System.Drawing;
 
 namespace AIServer.Controllers
 {
+    [Route("[controller]/[action]")]
     public class AiNumberController : Controller
     {
-        [HttpPost("AiNumber/DefineNumber")]
-        [Authorize]
+        [HttpPost]
         public IActionResult DefineNumber(IFormFile File)
         {
             var streamImage = File.OpenReadStream();

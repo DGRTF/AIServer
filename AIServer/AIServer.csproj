@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="number-ml-paint\**" />
+    <Content Remove="number-ml-paint\**" />
+    <EmbeddedResource Remove="number-ml-paint\**" />
+    <None Remove="number-ml-paint\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Accord.Math" Version="3.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
@@ -13,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AIModels\" />
+    <Folder Include="Models\AIModels\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

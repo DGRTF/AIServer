@@ -10,7 +10,7 @@ namespace AIServer.AI
     {
         public AiSingleNumber()
         {
-            Session = new InferenceSession("./AIModels/AISingleNumberModel.onnx");
+            Session = new InferenceSession("./Models/AIModels/AISingleNumberModel.onnx");
         }
 
         InferenceSession Session { get; }
