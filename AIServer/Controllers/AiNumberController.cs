@@ -1,13 +1,12 @@
 ﻿using AIServer.AI;
 using AIServer.DataHandlers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
 
 namespace AIServer.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("AiNumber/[action]")]
     public class AiNumberController : Controller
     {
         [HttpPost]

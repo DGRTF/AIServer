@@ -76,7 +76,7 @@ namespace AIServer.Controllers.Authtorize
             return Json(response);
         }
 
-        private ClaimsIdentity GetIdentity(string name, string password)
+        ClaimsIdentity GetIdentity(string name, string password)
         {
             User person = this.DB.Users.ToList().FirstOrDefault(x => x.Name == name && x.Password == password);
 

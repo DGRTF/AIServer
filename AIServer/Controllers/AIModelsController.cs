@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace AIServer.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("AIModels/[action]")]
     [Authorize]
     public class AIModelsController : Controller
     {
@@ -18,15 +18,19 @@ namespace AIServer.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddAIModel([Required]IFormFile file)
+        public JsonResult AddAIModel(IFormFile file)
         {
-            var model = ContextDB.AIModels.ToList().FirstOrDefault(model => model.Name == file.FileName);
+            var model = ContextDB.AIModels.FirstOrDefault(model => model.Name == file.FileName);
 
             if (model == null)
             {
+                int id = ContextDB.Users
+                    .FirstOrDefault(user => user.Name == User.Identity.Name).Id;
+
                 model = new AIModel()
                 {
-                    Name = file.FileName
+                    Name = file.FileName,
+                    UserId = id,
                 };
 
                 var stream = file.OpenReadStream();
@@ -38,6 +42,37 @@ namespace AIServer.Controllers
             }
             else
                 return Json(false);
+        }
+
+        [HttpGet]
+        public JsonResult GetMyModels(RequesModelGetMyModels request)
+        {
+            if (request.Take > 0)
+            {
+                if (request.Take > 1000)
+                    request.Take = 1000;
+
+                var models = ContextDB.AIModels.ToList().Where(model =>
+                model.UserId == ContextDB.Users.FirstOrDefault(user =>
+                user.Name == User.Identity.Name).Id)
+                    .Select(model => new
+                    {
+                        model.Id,
+                        model.Name,
+                    }).Skip(request.Skip).Take(request.Take);
+
+                return Json(models);
+            }
+            else
+                return Json(
+                    BadRequest(
+                        new { errorText = "Количество запрашиваемых моделей не может быть меньше 1." }));
+        }
+
+        public class RequesModelGetMyModels
+        {
+            public int Skip { get; set; } = 0;
+            public int Take { get; set; } = 100;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Text.Json.Serialization;
 
 namespace AIServer.Models.DBModels
 {
@@ -8,5 +8,10 @@ namespace AIServer.Models.DBModels
         public string Name { get; set; }
         public byte[] Model { get; set; }
 
+        [JsonIgnore]
+        public int UserId { get; set; }
+
+        [JsonIgnore]
+        public User User { get; set; }
     }
 }
