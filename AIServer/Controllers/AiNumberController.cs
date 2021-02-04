@@ -9,10 +9,15 @@ namespace AIServer.Controllers
     [Route("AiNumber/[action]")]
     public class AiNumberController : Controller
     {
-        [HttpPost]
-        public IActionResult DefineNumber(IFormFile File)
+        public AiNumberController()
         {
-            var streamImage = File.OpenReadStream();
+
+        }
+
+        [HttpPost]
+        public IActionResult DefineNumber(IFormFile file)
+        {
+            var streamImage = file.OpenReadStream();
             var imageHandler = new ImageHandler(new Bitmap(streamImage));
 
             var model = new AiSingleNumber();

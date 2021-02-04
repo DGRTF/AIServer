@@ -13,6 +13,11 @@ namespace AIServer.AI
             Session = new InferenceSession("./Models/AIModels/AISingleNumberModel.onnx");
         }
 
+        public AiSingleNumber(byte[] model)
+        {
+            Session = new InferenceSession( model);
+        }
+
         InferenceSession Session { get; }
 
         public int DefineNumber(float[] inputData)
@@ -40,6 +45,7 @@ namespace AIServer.AI
                 {
                     float[] outs = (n.Value as DenseTensor<float>).Buffer.ToArray();
                     float number = 0;
+
                     foreach (var nn in outs)
                     {
                         if (nn > number)
@@ -47,6 +53,7 @@ namespace AIServer.AI
                     }
 
                     outItemNumber = outs.IndexOf(number);
+
                     if (outItemNumber >= 0)
                         return outItemNumber;
                 }

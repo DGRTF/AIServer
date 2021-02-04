@@ -27,6 +27,18 @@ x64/
 [Bb]in/
 [Oo]bj/
 
+AIServer/[Dd]ebug/
+AIServer/[Rr]elease/
+AIServer/x64/
+AIServer/[Bb]in/
+AIServer/[Oo]bj/
+
+AIServerUnitTests/[Dd]ebug/
+AIServerUnitTests/[Rr]elease/
+AIServerUnitTests/x64/
+AIServerUnitTests/[Bb]in/
+AIServerUnitTests/[Oo]bj/
+
 # NuGet Packages Directory
 packages/
 
