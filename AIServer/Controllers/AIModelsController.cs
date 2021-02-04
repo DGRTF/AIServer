@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace AIServer.Controllers
 {
@@ -19,64 +19,70 @@ namespace AIServer.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddAIModel(IFormFile file)
+        public async Task<IActionResult> AddAIModel(IFormFile file)
         {
-            var model = await ContextDB.AIModels.FirstOrDefaultAsync(model => model.Name == file.FileName);
+            var model = await ContextDB.AIModels
+                .Where(model => model.UserId == ContextDB.Users
+                    .FirstOrDefault(user => user.Name == User.Identity.Name).Id)
+                        .FirstOrDefaultAsync(model => model.Name == file.FileName);
 
-            if (model == null)
+            if (model != null)
+                return BadRequest(
+                        new { errorText = "Модель с таким именем уже существует" });
+
+            var user = await ContextDB.Users.FirstOrDefaultAsync(user => user.Name == User.Identity.Name);
+            int id = user.Id;
+
+            var stream = file.OpenReadStream();
+
+            model = new AIModel()
             {
-                var user = await ContextDB.Users.FirstOrDefaultAsync(user => user.Name == User.Identity.Name);
-                int id = user.Id;
+                Name = file.FileName,
+                UserId = id,
+                Model = new byte[stream.Length],
+            };
 
-                var stream = file.OpenReadStream();
+            await stream.ReadAsync(model.Model, 0, (int)stream.Length);
 
-                model = new AIModel()
-                {
-                    Name = file.FileName,
-                    UserId = id,
-                    Model = new byte[stream.Length],
-                };
+            await ContextDB.AIModels.AddAsync(model);
+            await ContextDB.SaveChangesAsync();
 
-                await stream.ReadAsync(model.Model, 0, (int)stream.Length);
-
-                await ContextDB.AIModels.AddAsync(model);
-                await ContextDB.SaveChangesAsync();
-
-                return Json(true);
-            }
-            else
-                return Json(false);
+            return Json(true);
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetMyModels(RequesModelGetMyModels request)
+        public async Task<IActionResult> GetMyModels(RequesModelGetMyModels request)
         {
-            if (request.Take > 0)
-            {
-                if (request.Take > 1000)
-                    request.Take = 1000;
+            if (request.Take < 1)
+                return BadRequest(
+                        new { errorText = "Количество запрашиваемых моделей не может быть меньше 1." });
 
-                var models = await ContextDB.AIModels.Where(model =>
-                    model.UserId == ContextDB.Users.FirstOrDefault(user =>
-                        user.Name == User.Identity.Name).Id)
-                    .Select(model => new
-                    {
-                        model.Id,
-                        model.Name,
-                    }).Skip(request.Skip).Take(request.Take).ToListAsync();
+            if (request.Take > 1000)
+                request.Take = 1000;
 
-                return Json(models);
-            }
-            else
-                return Json(
-                    BadRequest(
-                        new { errorText = "Количество запрашиваемых моделей не может быть меньше 1." }));
+            var models = await ContextDB.AIModels.Where(model =>
+                model.UserId == ContextDB.Users.FirstOrDefault(user =>
+                    user.Name == User.Identity.Name).Id)
+                .Select(model => new
+                {
+                    model.Id,
+                    model.Name,
+                }).Skip(request.Skip).Take(request.Take).ToListAsync();
+
+            return Json(models);
         }
 
+        // реализовать на фронте
         [HttpDelete]
-        public void DeleteModel()
+        public async Task DeleteModel(string modelName)
         {
+            var model = await ContextDB.AIModels
+                .Where(model => model.UserId == ContextDB.Users
+                    .FirstOrDefault(user => user.Name == User.Identity.Name).Id)
+                        .FirstOrDefaultAsync(model => model.Name == modelName);
 
+            ContextDB.AIModels.Remove(model);
+            await ContextDB.SaveChangesAsync();
         }
 
         public class RequesModelGetMyModels
