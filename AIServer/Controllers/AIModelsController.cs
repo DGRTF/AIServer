@@ -21,8 +21,8 @@ namespace AIServer.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAIModel(IFormFile file)
         {
-            var model = await ContextDB.AIModels
-                .Where(model => model.UserId == ContextDB.Users
+            var model = await ContextDB.AIModels.AsNoTracking()
+                .Where(model => model.UserId == ContextDB.Users.AsNoTracking()
                     .FirstOrDefault(user => user.Name == User.Identity.Name).Id)
                         .FirstOrDefaultAsync(model => model.Name == file.FileName);
 
@@ -30,7 +30,7 @@ namespace AIServer.Controllers
                 return BadRequest(
                         new { errorText = "Модель с таким именем уже существует" });
 
-            var user = await ContextDB.Users.FirstOrDefaultAsync(user => user.Name == User.Identity.Name);
+            var user = await ContextDB.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Name == User.Identity.Name);
             int id = user.Id;
 
             var stream = file.OpenReadStream();
@@ -60,8 +60,8 @@ namespace AIServer.Controllers
             if (request.Take > 1000)
                 request.Take = 1000;
 
-            var models = await ContextDB.AIModels.Where(model =>
-                model.UserId == ContextDB.Users.FirstOrDefault(user =>
+            var models = await ContextDB.AIModels.AsNoTracking().Where(model =>
+                model.UserId == ContextDB.Users.AsNoTracking().FirstOrDefault(user =>
                     user.Name == User.Identity.Name).Id)
                 .Select(model => new
                 {
@@ -72,11 +72,10 @@ namespace AIServer.Controllers
             return Json(models);
         }
 
-        // реализовать на фронте
         [HttpDelete]
         public async Task DeleteModel(string modelName)
         {
-            var model = await ContextDB.AIModels
+            var model = await ContextDB.AIModels.AsNoTracking()
                 .Where(model => model.UserId == ContextDB.Users
                     .FirstOrDefault(user => user.Name == User.Identity.Name).Id)
                         .FirstOrDefaultAsync(model => model.Name == modelName);

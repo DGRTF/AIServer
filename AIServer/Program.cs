@@ -15,7 +15,7 @@ namespace AIServer
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseWebRoot("./number-ml-paint/public");
+                    webBuilder.UseWebRoot("./number-ml-paint/dist");
                 });
     }
 }
